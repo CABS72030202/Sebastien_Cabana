@@ -112,7 +112,7 @@
               </div>
               <div class="stat-item">
                 <i class="fas fa-bolt"></i>
-                <span data-en="5+ PCB designs" data-fr="5+ conceptions de PCB">5+ PCB designs</span>
+                <span data-en="8+ PCB designs" data-fr="8+ conceptions de PCB">8+ PCB designs</span>
               </div>
             </div>
           </div>
@@ -162,6 +162,9 @@
                 <span>GPIO/UART/I2C/SPI</span>
               </div>
               <div class="skill-item">
+                <span>FPGA</span>
+              </div>
+              <div class="skill-item">
                 <span>UBoot</span>
               </div>
               <div class="skill-item">
@@ -194,6 +197,9 @@
             <div class="skill-list">
               <div class="skill-item">
                 <span>C/C++</span>
+              </div>
+              <div class="skill-item">
+                <span>CUDA</span>
               </div>
               <div class="skill-item">
                 <span>VHDL</span>
@@ -236,6 +242,15 @@
               <div class="skill-item">
                 <span>Vivado</span>
               </div>
+              <div class="skill-item">
+                <span>PlatformIO</span>
+              </div>
+              <div class="skill-item">
+                <span>Unity</span>
+              </div>
+              <div class="skill-item">
+                <span>Nvidia Nsight Compute</span>
+              </div>
             </div>
           </div>
         </div>
@@ -266,6 +281,10 @@
             <i class="fas fa-bolt"></i>
             <span data-en="Hardware Design" data-fr="Conception matérielle">Hardware Design</span>
           </button>
+          <button class="filter-btn" data-filter="cad">
+            <i class="fas fa-gear"></i>
+            <span data-en="Mechanical Design" data-fr="Conception mécanique">Mechanical Design</span>
+          </button>
           <button class="filter-btn" data-filter="web">
             <i class="fas fa-globe"></i>
             <span data-en="Web Projects" data-fr="Projets web">Web Projects</span>
@@ -277,6 +296,60 @@
         </div>
         
         <div class="accordion">
+
+          <!-- JDG 2026 Competition Machine -->
+          <div class="accordion-item" data-category="hardware embedded cad ongoing">
+            <div class="accordion-header">
+              <i class="fas fa-bolt"></i>
+              <div class="project-title-section">
+                <h3 data-en="JDG 2026 Competition Machine" data-fr="Machine Jeux de Génie 2026">JDG 2026 Competition Machine</h3>
+                <div class="tech-tags">
+                  <span class="tech-tag">Embedded</span>
+                  <span class="tech-tag">Hardware</span>
+                  <span class="tech-tag">ESP32</span>
+                  <span class="tech-tag">Raspberry Pi</span>
+                  <span class="tech-tag">Linux</span>
+                  <span class="tech-tag">SSH</span>
+                  <span class="tech-tag">SPI</span>
+                  <span class="tech-tag">C/C++</span>
+                </div>
+              </div>
+              <img src="./assets/img/projects/machine2026/logo.png" alt="JDG 2026 Competition Machine" class="project-preview-image" />
+              <i class="fas fa-chevron-down accordion-arrow"></i>
+            </div>
+            <div class="accordion-content">
+              <p 
+              data-en="" 
+              data-fr="">
+              </p>
+              
+              <div class="gallery-container" data-folder="projects/machine2026" data-prefix="machine" data-count="8" data-extension="png">
+                <div class="gallery">
+                  <div class="gallery-track"></div>
+                </div>
+              </div>
+              
+              <div class="project-actions">
+                <a href="https://www.youtube.com/watch?v=fI_XxLZSVws&t=2h28m23s" class="action-btn">
+                  <i class="fas fa-video"></i>
+                  <span data-en="Video" data-fr="Vidéo"></span>
+                </a>
+                <a href="https://github.com/CABS72030202/JDG2026_Machine" target="_blank" class="action-btn">
+                  <i class="fab fa-github"></i>
+                  <span data-en="View Code" data-fr="Voir le code"></span>
+                </a>
+                <a href="./assets/img/projects/machine2026/ppo.pdf" class="action-btn" target="_blank">
+                    <i class="fas fa-file-powerpoint"></i>
+                    <span data-en="PowerPoint Presentation" data-fr="Présentation PowerPoint"></span>
+                </a>
+                <a href="./assets/img/projects/machine2026/cahier.pdf" class="action-btn" target="_blank">
+                    <i class="fas fa-file-pdf"></i>
+                    <span data-en="Rules Document" data-fr="Cahier des charges"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+          
           <!-- CSE 2026 Website -->
           <div class="accordion-item" data-category="web ongoing">
             <div class="accordion-header">
@@ -319,16 +392,17 @@
           </div>
 
           <!-- Random Alarm System -->
-          <div class="accordion-item" data-category="embedded ongoing">
+          <div class="accordion-item" data-category="embedded hardware cad">
             <div class="accordion-header">
               <i class="fas fa-microchip"></i>
               <div class="project-title-section">
                 <h3 data-en="Random Alarm System" data-fr="Alarme aléatoire"></h3>
                 <div class="tech-tags">
                   <span class="tech-tag">ATtiny85</span>
-                  <span class="tech-tag">C</span>
+                  <span class="tech-tag">C++</span>
                   <span class="tech-tag">Low Power</span>
                   <span class="tech-tag">PCB</span>
+                  <span class="tech-tag">CAD</span>
                 </div>
               </div>
               <img src="./assets/img/projects/alarm/logo.png" alt="Random Alarm System" class="project-preview-image" />
@@ -336,27 +410,69 @@
             </div>
             <div class="accordion-content">
                 <p 
-                data-en="This ATtiny85-based embedded system is designed for fun: it plays a chosen melody at a random time, with a buzzer and a blinking LED for extra effect. A button lets you stop the alarm, and a switch turns the device off completely. Originally built to call 'Swince’O’Clock' at random moments during the Engineering Games events, this playful project was a great opportunity to deepen my expertise in low-power design, current consumption optimization, and circuit miniaturization, all within a watch-sized custom PCB."
-                data-fr="Ce système embarqué basé sur un ATtiny85 a été conçu pour le plaisir : il joue une mélodie choisie à un moment aléatoire, avec un buzzer et une DEL clignotante pour plus d’effet. Un bouton permet d’arrêter l’alarme et un interrupteur coupe complètement l’alimentation. Créé à l’origine pour annoncer le 'Swince’O’Clock' à des moments imprévus pendant les Jeux de Génie, ce projet ludique m’a permis d’approfondir mes connaissances en conception basse consommation, optimisation du courant et miniaturisation de circuits, le tout sur un PCB format montre." >
+                data-en="This ATtiny85-based embedded system was designed for fun: it plays a chosen melody at a random moment, with a buzzer, a blinking LED, and a vibration motor for extra effect. A button lets you stop the alarm, and a switch turns the device off completely. Originally created to announce 'Swince’O’Clock' at unexpected times during the Engineering Games, this playful project allowed me to deepen my skills in low-power design, current optimization, and circuit miniaturization, all on a watch-sized custom PCB. It was also my first entrepreneurial project: I conducted an in-depth financial analysis before producing, assembling, and selling around twenty units to members of the Trois-Rivières Engineering Games delegation."
+                data-fr="Ce système embarqué basé sur un ATtiny85 a été conçu pour le plaisir : il joue une mélodie choisie à un moment aléatoire, accompagné d’un buzzer, d’une DEL clignotante et d’un vibreur pour plus d’effet. Un bouton permet d’arrêter l’alarme et un interrupteur coupe complètement l’alimentation. Conçu à l’origine pour annoncer le « Swince’O’Clock » à des moments imprévus pendant les Jeux de Génie, ce projet ludique m’a permis d’approfondir mes compétences en conception basse consommation, en optimisation du courant et en miniaturisation de circuits, le tout sur un PCB au format montre. Il s’agit également de mon premier projet entrepreneurial : j’ai réalisé une analyse financière approfondie avant de produire, d’assembler et de vendre une vingtaine d’unités aux membres de la délégation des Jeux de Génie de Trois-Rivières.">
                 </p>
               
-              <div class="gallery-container" data-folder="projects/alarm" data-prefix="alarm" data-count="4" data-extension="png">
+              <div class="gallery-container" data-folder="projects/alarm" data-prefix="alarm" data-count="5" data-extension="png">
                 <div class="gallery">
                   <div class="gallery-track"></div>
                 </div>
               </div>
               
-              <!--<div class="project-actions">
-                <a href="#" class="action-btn">
+              <div class="project-actions">
+                <a href="./assets/img/projects/alarm/schematic.pdf" class="action-btn">
                   <i class="fas fa-file-pdf"></i>
                   <span data-en="Schematic" data-fr="Schéma"></span>
                 </a>
-              </div> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 3-Band Audio Amplifier -->
+          <div class="accordion-item" data-category="hardware cad">
+            <div class="accordion-header">
+              <i class="fas fa-volume-up"></i>
+              <div class="project-title-section">
+                <h3 data-en="3-Band Audio Amplifier" data-fr="Amplificateur audio 3 bandes">3-Band Audio Amplifier</h3>
+                <div class="tech-tags">
+                  <span class="tech-tag">Altium Designer</span>
+                  <span class="tech-tag">Analog Circuit</span>
+                  <span class="tech-tag">PCB Design</span>
+                  <span class="tech-tag">CAD</span>
+                  <span class="tech-tag">Audio</span>
+                </div>
+              </div>
+              <img src="./assets/img/projects/audio-amp/logo.jfif" alt="3-Band Audio Amplifier" class="project-preview-image" />
+              <i class="fas fa-chevron-down accordion-arrow"></i>
+            </div>
+            <div class="accordion-content">
+              <p 
+                data-en="Developed during my engineering internship at the UQTR, this project consists of a 3-band analog audio amplifier with integrated power supply and adjustable gain per frequency band. Each stage of the circuit can be isolated for easier debugging, as this design serves as an educational demonstrator for electrical and computer engineering students learning Altium Designer and lab instrumentation. I designed my first 4-layer PCB manufactured externally, along with a custom 3D-printed enclosure to protect and showcase the board. This project strengthened my expertise in analog hardware design, PCB layout, and the practical aspects of turning a concept into a reliable demonstrator." 
+                data-fr="Développé dans le cadre de mon stage en ingénierie à l'UQTR, ce projet consiste en un amplificateur audio analogique 3 bandes avec alimentation intégrée et gain ajustable pour chaque bande de fréquence. Chaque section du circuit peut être isolée pour faciliter le débogage, car ce montage sert de démonstrateur pédagogique pour les étudiants en génie électrique et informatique apprenant Altium Designer et l’utilisation des instruments de laboratoire. Il s'agit de mon premier PCB quatre couches fabriqué à l’externe, accompagné d’un boîtier imprimé en 3D pour protéger et mettre en valeur la carte. Ce projet a consolidé mon expertise en conception analogique, en routage PCB et dans la concrétisation d’un concept en un démonstrateur fiable.">
+              </p>
+              
+              <div class="gallery-container" data-folder="projects/audio-amp" data-prefix="audio" data-count="7" data-extension="jfif">
+                <div class="gallery">
+                  <div class="gallery-track"></div>
+                </div>
+              </div>
+              
+              <div class="project-actions">
+                <a href="./assets/img/projects/audio-amp/schematic.pdf" target="_blank" class="action-btn">
+                  <i class="fas fa-file-pdf"></i>
+                  <span data-en="Circuit Schematic" data-fr="Schéma du circuit"></span>
+                </a>
+                <a href="./assets/img/projects/audio-amp/enclosure.stl" target="_blank" class="action-btn">
+                  <i class="fas fa-cube"></i>
+                  <span data-en="3D Enclosure" data-fr="Boîtier 3D"></span>
+                </a>
+              </div>
             </div>
           </div>
 
           <!-- JDG 2025 Competition Machine -->
-          <div class="accordion-item" data-category="hardware ">
+          <div class="accordion-item" data-category="hardware embedded">
             <div class="accordion-header">
               <i class="fas fa-bolt"></i>
               <div class="project-title-section">
@@ -564,48 +680,6 @@
                 <a href="./assets/img/projects/pfe2023/journal.pdf" target="_blank" class="action-btn">
                   <i class="fas fa-tasks"></i>
                   <span data-en="Progress Report" data-fr="Journal de progression"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3-Band Audio Amplifier -->
-          <div class="accordion-item" data-category="hardware ongoing">
-            <div class="accordion-header">
-              <i class="fas fa-volume-up"></i>
-              <div class="project-title-section">
-                <h3 data-en="3-Band Audio Amplifier" data-fr="Amplificateur audio 3 bandes">3-Band Audio Amplifier</h3>
-                <div class="tech-tags">
-                  <span class="tech-tag">Altium Designer</span>
-                  <span class="tech-tag">Analog Circuit</span>
-                  <span class="tech-tag">PCB Design</span>
-                  <span class="tech-tag">SolidWorks</span>
-                  <span class="tech-tag">Audio</span>
-                </div>
-              </div>
-              <img src="./assets/img/projects/audio-amp/logo.jfif" alt="3-Band Audio Amplifier" class="project-preview-image" />
-              <i class="fas fa-chevron-down accordion-arrow"></i>
-            </div>
-            <div class="accordion-content">
-              <p 
-                data-en="Developed during my engineering internship at the UQTR, this project consists of a 3-band analog audio amplifier with integrated power supply and adjustable gain per frequency band. Each stage of the circuit can be isolated for easier debugging, as this design serves as an educational demonstrator for electrical and computer engineering students learning Altium Designer and lab instrumentation. I designed my first 4-layer PCB manufactured externally, along with a custom 3D-printed enclosure to protect and showcase the board. This project strengthened my expertise in analog hardware design, PCB layout, and the practical aspects of turning a concept into a reliable demonstrator." 
-                data-fr="Développé dans le cadre de mon stage en ingénierie à l'UQTR, ce projet consiste en un amplificateur audio analogique 3 bandes avec alimentation intégrée et gain ajustable pour chaque bande de fréquence. Chaque section du circuit peut être isolée pour faciliter le débogage, car ce montage sert de démonstrateur pédagogique pour les étudiants en génie électrique et informatique apprenant Altium Designer et l’utilisation des instruments de laboratoire. Il s'agit de mon premier PCB quatre couches fabriqué à l’externe, accompagné d’un boîtier imprimé en 3D pour protéger et mettre en valeur la carte. Ce projet a consolidé mon expertise en conception analogique, en routage PCB et dans la concrétisation d’un concept en un démonstrateur fiable.">
-              </p>
-              
-              <div class="gallery-container" data-folder="projects/audio-amp" data-prefix="audio" data-count="7" data-extension="jfif">
-                <div class="gallery">
-                  <div class="gallery-track"></div>
-                </div>
-              </div>
-              
-              <div class="project-actions">
-                <a href="./assets/img/projects/audio-amp/schematic.pdf" target="_blank" class="action-btn">
-                  <i class="fas fa-file-pdf"></i>
-                  <span data-en="Circuit Schematic" data-fr="Schéma du circuit"></span>
-                </a>
-                <a href="./assets/img/projects/audio-amp/enclosure.stl" target="_blank" class="action-btn">
-                  <i class="fas fa-cube"></i>
-                  <span data-en="3D Enclosure" data-fr="Boîtier 3D"></span>
                 </a>
               </div>
             </div>

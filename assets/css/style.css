@@ -678,6 +678,7 @@ section:last-child {
     color: var(--body-color);
     font-size: var(--body-size-small);
     line-height: 1.6;
+    text-align: justify;
 }
 
 .timeline-achievements li::before {
