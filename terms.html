@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio - Cabana</title>
+  <title>Sébastien Cabana</title>
   <link rel="icon" type="image/png" href="./assets/img/logo.png" />
 
   <!-- Security -->
@@ -34,11 +33,24 @@
   <link rel="stylesheet" href="./assets/css/branding.css" />
   <link rel="stylesheet" href="./assets/css/security.css" />
   <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="./assets/css/specs/accordion.css" />
+  <link rel="stylesheet" href="./assets/css/specs/carousel.css" />
+  <link rel="stylesheet" href="./assets/css/specs/document.css" />
+  <link rel="stylesheet" href="./assets/css/specs/form.css" />
+  <link rel="stylesheet" href="./assets/css/specs/gallery.css" />
+  <link rel="stylesheet" href="./assets/css/specs/tab.css" />
 
   <!-- Scripts -->
+  <script defer src="./assets/js/accordion.js"></script>
+  <script defer src="./assets/js/carousel.js"></script>
+  <script defer src="./assets/js/form.js"></script>
+  <script defer src="./assets/js/gallery.js"></script>
   <script defer src="./assets/js/hero.js"></script>
   <script defer src="./assets/js/language.js"></script>
+  <script defer src="./assets/js/portfolio.js"></script>
+  <script defer src="./assets/js/scroll-nav.js"></script>
   <script defer src="./assets/js/security.js"></script>
+  <script defer src="./assets/js/tab.js"></script>
 </head>
 
 <body>
@@ -48,17 +60,14 @@
         <div class="header-left">
           <img src="./assets/img/logo.png" alt="Logo" class="logo"/>
           <div class="social-icons">
-            <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram" class="social-icon">
-              <i class="fab fa-instagram"></i>
+            <a href="https://github.com/CABS72030202" target="_blank" aria-label="github" class="social-icon">
+              <i class="fab fa-github"></i>
             </a>
-            <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook" class="social-icon">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn" class="social-icon">
+            <a href="https://www.linkedin.com/in/s%C3%A9bastien-cabana-79075327b/" target="_blank" aria-label="LinkedIn" class="social-icon">
               <i class="fab fa-linkedin-in"></i>
             </a>
-            <a href="https://discord.com" target="_blank" aria-label="Discord" class="social-icon">
-              <i class="fab fa-discord"></i>
+            <a href="https://www.facebook.com/sebc5380/" target="_blank" aria-label="Facebook" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
             </a>
           </div>
         </div>
@@ -69,11 +78,14 @@
       </div>
       <nav class="main-nav">
         <ul>
-          <li><a href="index.html" data-en="Home" data-fr="Accueil"></a></li>
-          <li><a href="background.html" data-en="Background" data-fr="Parcours"></a></li>
-          <li><a href="projects.html" class="current" data-en="Projects" data-fr="Projets"></a></li>
-          <li><a href="skills.html" data-en="Skills" data-fr="Compétences"></a></li>
-          <li><a href="contact.html" data-en="Contact" data-fr="Contact"></a></li>
+          <li><a href="#about" class="current" data-en="About Me" data-fr="À propos"></a></li>
+          <li><a href="#skills" data-en="Skills" data-fr="Compétences"></a></li>
+          <li><a href="#projects" data-en="Projects" data-fr="Projets"></a></li>
+          <li><a href="#experience" data-en="Experience" data-fr="Expérience"></a></li>
+          <li><a href="#education" data-en="Education" data-fr="Éducation"></a></li>
+          <li><a href="#competitions" data-en="Competitions & Involvement" data-fr="Compétitions et implications"></a></li>
+          <li><a href="#interests" data-en="Interests" data-fr="Intérêts"></a></li>
+          <li><a href="#contact" data-en="Contact" data-fr="Contact"></a></li>
         </ul>
       </nav>
     </div>
@@ -91,8 +103,8 @@
 
   <footer>
     <div class="footer-content">
-      <p data-en="&copy; 2025 Sébastien Cabana. All rights reserved."
-         data-fr="&copy; 2025 Sébastien Cabana. Tous droits réservés.">
+      <p data-en="&copy; 2026 Sébastien Cabana. All rights reserved."
+         data-fr="&copy; 2026 Sébastien Cabana. Tous droits réservés.">
       </p>
       <a href="terms.html" class="footer-link"
         data-en="Terms of Use"
