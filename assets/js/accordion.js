@@ -18,14 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // If this item wasn't active, open it
             if (!isActive) {
                 item.classList.add('active');
-                
-                // Scroll the accordion item into view smoothly after a delay
-                setTimeout(() => {
-                    item.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'nearest'
-                    });
-                }, 200);
             }
         });
         
