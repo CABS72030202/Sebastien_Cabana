@@ -708,9 +708,16 @@ section:last-child {
 
 /* Education Grid Styles */
 .education-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.education-card {
+  flex: 1 1 320px;
+  min-width: 280px;
+  max-width: 360px;
 }
 
 .education-card {
@@ -831,9 +838,16 @@ section:last-child {
 }
 
 .involvement-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.involvement-card {
+  flex: 1 1 300px;
+  min-width: 260px;
+  max-width: 340px;
 }
 
 .involvement-card {
@@ -897,10 +911,17 @@ section:last-child {
 
 /* Interests Styles */
 .interests-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.interest-card {
+  flex: 1 1 320px;
+  min-width: 280px;
+  max-width: 360px;
 }
 
 .interest-card {
@@ -975,9 +996,16 @@ section:last-child {
 }
 
 .facts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.fact-item {
+  flex: 1 1 260px;
+  min-width: 220px;
+  max-width: 320px;
 }
 
 .fact-item {
@@ -1008,10 +1036,17 @@ section:last-child {
 
 /* Contact section styles */
 .contact-info {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
   margin: 2rem 0;
+}
+
+.contact-item {
+  flex: 1 1 280px;
+  min-width: 240px;
+  max-width: 320px;
 }
 
 .contact-item {
@@ -1153,7 +1188,17 @@ section:last-child {
     .projects-grid,
     .education-grid,
     .interests-grid {
-        grid-template-columns: 1fr;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .education-card,
+    .involvement-card,
+    .interest-card,
+    .fact-item,
+    .contact-item {
+      flex: 1 1 100%;
+      max-width: 100%;
     }
     
     .timeline-item {
