@@ -692,8 +692,9 @@ section:last-child {
 .timeline-skills {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .skill-chip {
@@ -786,8 +787,9 @@ section:last-child {
 .courses {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .course-tag {
@@ -968,6 +970,8 @@ section:last-child {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
 }
 
 .tag {
