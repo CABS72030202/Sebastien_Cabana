@@ -1034,15 +1034,15 @@
         <p data-en="My participation in competitions, extracurricular activities, and community involvement." data-fr="Ma participation aux compétitions, activités parascolaires et à l'implication communautaire.">My participation in competitions, extracurricular activities, and community involvement.</p>
         
         <div class="involvement-tabs">
-          <button class="tab-btn active" data-tab="competitions">
+          <button class="tab-btn active" data-tab="tab-competitions">
             <i class="fas fa-trophy"></i>
             <span data-en="Competitions" data-fr="Compétitions">Competitions</span>
           </button>
-          <button class="tab-btn" data-tab="volunteer">
+          <button class="tab-btn" data-tab="tab-volunteer">
             <i class="fas fa-hands-helping"></i>
             <span data-en="Volunteer Work" data-fr="Implication">Volunteer Work</span>
           </button>
-          <button class="tab-btn" data-tab="organizations">
+          <button class="tab-btn" data-tab="tab-organizations">
             <i class="fas fa-users"></i>
             <span data-en="Organizations" data-fr="Organisations">Organizations</span>
           </button>
@@ -1051,107 +1051,153 @@
         <div class="involvement-content">
           
           <!-- COMPETITIONS -->
-          <div class="involvement-tab active" id="competitions">
+          <div class="involvement-tab active" id="tab-competitions">
             <div class="involvement-grid">
               <div class="involvement-card">
-                <div class="involvement-icon"><i class="fas fa-code"></i></div>
-                <div class="involvement-info">
+                <div class="involvement-card-header">
+                  <div class="involvement-icon"><i class="fas fa-code"></i></div>
                   <h3 data-en="CS Games" data-fr="CS Games">CS Games</h3>
                   <span class="date" data-en="2025" data-fr="2025">2025</span>
-                  <span class="achievement" data-en="Team Leader - Trois-Rivières Delegation" data-fr="Chef d'équipe - Délégation Trois-Rivières">Team Leader - Trois-Rivières Delegation</span>
+                </div>
+                <div class="involvement-info">
+                  <span class="achievement" data-en="Team Leader" data-fr="Chef d'équipe">Team Leader</span>
                   <p data-en="Led the Trois-Rivières delegation and competed in programming and security challenges." data-fr="Chef de la délégation de Trois-Rivières et participation aux épreuves de programmation et de sécurité.">Led the Trois-Rivières delegation and competed in programming and security challenges.</p>
                 </div>
               </div>
 
               <div class="involvement-card">
-                <div class="involvement-icon"><i class="fas fa-microchip"></i></div>
-                <div class="involvement-info">
-                  <h3 data-en="Quebec Engineering Competition (CQI)" data-fr="Compétition Québécoise en Ingénierie (CQI)">Quebec Engineering Competition (CQI)</h3>
+                <div class="involvement-card-header">
+                  <div class="involvement-icon"><i class="fas fa-microchip"></i></div>
+                  <h3 data-en="Quebec Engineering Competition (QEC)" data-fr="Compétition québécoise d'ingénierie (CQI)">Quebec Engineering Competition (QEC)</h3>
                   <span class="date" data-en="2025" data-fr="2025">2025</span>
+                </div>
+                <div class="involvement-info">
                   <span class="achievement" data-en="Programming Team" data-fr="Équipe Programmation">Programming Team</span>
-                  <p data-en="Represented UQTR in the programming challenge at CQI." data-fr="Représenté l'UQTR à la compétition de programmation à la CQI.">Represented UQTR in the programming challenge at CQI.</p>
+                  <p data-en="Represented UQTR in the programming challenge at QEC." data-fr="Représenté l'UQTR à la compétition de programmation à la CQI.">Represented UQTR in the programming challenge at QEC.</p>
                 </div>
               </div>
 
               <div class="involvement-card">
-                <div class="involvement-icon"><i class="fas fa-cogs"></i></div>
-                <div class="involvement-info">
+                <div class="involvement-card-header">
+                  <div class="involvement-icon"><i class="fas fa-cogs"></i></div>
                   <h3 data-en="Engineering Games" data-fr="Jeux de Génie">Engineering Games</h3>
                   <span class="date" data-en="2025" data-fr="2025">2025</span>
-                  <span class="achievement" data-en="Co-VP Machine & Participant" data-fr="Co-VP Machine & Participant">Co-VP Machine & Participant</span>
-                  <p data-en="Helped coordinate the machine competition and represented UQTR as a participant." data-fr="Coordination de la compétition machine et participation pour représenter l'UQTR.">Helped coordinate the machine competition and represented UQTR as a participant.</p>
+                </div>
+                <div class="involvement-info">
+                  <span class="achievement" data-en="Delegate" data-fr="Délégué">Delegate</span>
+                  <p data-en="Responsible for the IT and software section of the Machine competition." data-fr="Responsable de la section informatique et logicielle de la compétition Machine.">Responsible for the IT and software section of the Machine competition.</p>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- VOLUNTEER WORK / IMPLICATION -->
-          <div class="involvement-tab" id="volunteer">
+          <div class="involvement-tab" id="tab-volunteer">
             <div class="involvement-grid">
               <div class="involvement-card">
-                <div class="involvement-icon"><i class="fas fa-coins"></i></div>
-                <div class="involvement-info">
-                  <h3 data-en="Treasurer - GÉGI/IEEE" data-fr="Trésorier - GÉGI/IEEE">Treasurer - GÉGI/IEEE</h3>
-                  <span class="date" data-en="2024 - 2025" data-fr="2024 - 2025">2024 - 2025</span>
-                  <span class="achievement" data-en="Budget & Finance Management" data-fr="Gestion des Finances">Budget & Finance Management</span>
-                  <p data-en="Managed the budget and handled financial operations for the student association." data-fr="Gestion du budget et des opérations financières de l'association étudiante.">Managed the budget and handled financial operations for the student association.</p>
-                </div>
-              </div>
-
-              <div class="involvement-card">
-                <div class="involvement-icon"><i class="fas fa-user-tie"></i></div>
-                <div class="involvement-info">
+                <div class="involvement-card-header">
+                  <div class="involvement-icon"><i class="fas fa-user-tie"></i></div>
                   <h3 data-en="President - GÉGI/IEEE" data-fr="Président - GÉGI/IEEE">President - GÉGI/IEEE</h3>
                   <span class="date" data-en="2025 - 2026" data-fr="2025 - 2026">2025 - 2026</span>
-                  <span class="achievement" data-en="Leadership & Representation" data-fr="Leadership & Représentation">Leadership & Representation</span>
+                </div>
+                <div class="involvement-info">
+                  <span class="achievement" data-en="Leadership & Representation" data-fr="Leadership et représentation">Leadership & Representation</span>
                   <p data-en="Represented the student body and oversaw academic and social initiatives." data-fr="Représenté les étudiants et supervisé les initiatives académiques et sociales.">Represented the student body and oversaw academic and social initiatives.</p>
                 </div>
               </div>
 
               <div class="involvement-card">
-                <div class="involvement-icon"><i class="fas fa-network-wired"></i></div>
-                <div class="involvement-info">
-                  <h3 data-en="Tech Director - CDDI/CSE 2026" data-fr="Directeur aux Technologies - CDDI/CSE 2026">Tech Director - CDDI/CSE 2026</h3>
+                <div class="involvement-card-header">
+                  <div class="involvement-icon"><i class="fas fa-network-wired"></i></div>
+                  <h3 data-en="Technologies Director - CSE 2026" data-fr="Directeur aux Technologies - CDDI 2026">Technologies Director - CSE 2026</h3>
                   <span class="date" data-en="2025 - 2026" data-fr="2025 - 2026">2025 - 2026</span>
-                  <span class="achievement" data-en="Website & Platform Management" data-fr="Gestion des Plateformes Web">Website & Platform Management</span>
+                </div>
+                <div class="involvement-info">
+                  <span class="achievement" data-en="Website & Platform Management" data-fr="Gestion des plateformes web">Website & Platform Management</span>
                   <p data-en="Managed the website and internal digital tools for the organizing committee." data-fr="Gestion du site web et des outils numériques pour le comité organisateur.">Managed the website and internal digital tools for the organizing committee.</p>
+                </div>
+              </div>
+
+              <div class="involvement-card">
+                <div class="involvement-card-header">
+                  <div class="involvement-icon"><i class="fas fa-coins"></i></div>
+                  <h3 data-en="Treasurer - GÉGI/IEEE" data-fr="Trésorier - GÉGI/IEEE">Treasurer - GÉGI/IEEE</h3>
+                  <span class="date" data-en="2024 - 2025" data-fr="2024 - 2025">2024 - 2025</span>
+                </div>
+                <div class="involvement-info">
+                  <span class="achievement" data-en="Budget & Finance Management" data-fr="Gestion des finances">Budget & Finance Management</span>
+                  <p data-en="Managed the budget and handled financial operations for the student association." data-fr="Gestion du budget et des opérations financières de l'association étudiante.">Managed the budget and handled financial operations for the student association.</p>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- ORGANIZATIONS -->
-          <div class="involvement-tab" id="organizations">
+          <div class="involvement-tab" id="tab-organizations">
             <div class="involvement-grid">
+
               <div class="involvement-card">
-                <div class="involvement-icon"><i class="fas fa-users-cog"></i></div>
+                <div class="involvement-card-header">
+                  <div class="involvement-icon"><i class="fas fa-users-cog"></i></div>
+                  <h3 data-en="GÉGI Student Association" data-fr="Association Étudiante GÉGI">GÉGI Student Association</h3>
+                  <span class="date" data-en="2024 - Present" data-fr="2024 - Présent">2024 - Present</span>
+                </div>
                 <div class="involvement-info">
-                  <h3 data-en="GÉGI/IEEE Student Association" data-fr="Association Étudiante GÉGI/IEEE">GÉGI/IEEE Student Association</h3>
-                  <span class="date" data-en="2022 - Present" data-fr="2022 - Présent">2022 - Present</span>
-                  <span class="achievement" data-en="Executive Committee" data-fr="Comité Exécutif">Executive Committee</span>
-                  <p data-en="Active member involved in planning academic, social, and industry events." data-fr="Membre actif impliqué dans la planification d’événements académiques, sociaux et industriels.">Active member involved in planning academic, social, and industry events.</p>
+                  <span class="achievement" data-en="Executive Committee" data-fr="Comité exécutif">Executive Committee</span>
+                    <p data-en="Active member involved in planning academic, social, and industry events within the electrical and computer engineering student association."
+                     data-fr="Membre actif impliqué dans la planification d’événements académiques, sociaux et industriels au sein de l'association étudiante de génie électrique et génie informatique.">
+                    Active member involved in planning academic, social, and industry events within the electrical and computer engineering student association.
+                    </p>
                 </div>
               </div>
 
               <div class="involvement-card">
-                <div class="involvement-icon"><i class="fas fa-calendar-alt"></i></div>
-                <div class="involvement-info">
-                  <h3 data-en="CDDI/CSE 2026 Organizing Committee" data-fr="Comité Organisateur CDDI/CSE 2026">CDDI/CSE 2026 Organizing Committee</h3>
-                  <span class="date" data-en="2025 - 2026" data-fr="2025 - 2026">2025 - 2026</span>
-                  <span class="achievement" data-en="Tech & Logistics Lead" data-fr="Responsable Technique & Logistique">Tech & Logistics Lead</span>
-                  <p data-en="Organized and led the technical coordination of the event." data-fr="Organisation et coordination technique de l’événement.">Organized and led the technical coordination of the event.</p>
+                <div class="involvement-card-header">
+                  <div class="involvement-icon"><i class="fas fa-users-cog"></i></div>
+                  <h3 data-en="IEEE St-Maurice Student Branch" data-fr="Branche étudiante de la section St-Maurice d'IEEE">IEEE St-Maurice Student Branch</h3>
+                  <span class="date" data-en="2024 - Present" data-fr="2024 - Présent">2024 - Present</span>
                 </div>
-              </div>
+                <div class="involvement-info">
+                  <span class="achievement" data-en="Executive Committee" data-fr="Comité exécutif">Executive Committee</span>
+                    <p data-en="Member of the executive committee of a student association affiliated with IEEE, promoting professional development, access to engineering-related talks, and networking opportunities within a globally recognized organization."
+                      data-fr="Membre du comité exécutif d'une association étudiante affiliée à IEEE, visant à promouvoir le développement professionnel,l'accès à des conférences sur le domaine de l'ingénierie et les opportunités de réseautage au sein d'une organisation mondiale reconnue.">
+                    </p>
+                  </div>
+                </div>
 
-              <div class="involvement-card">
-                <div class="involvement-icon"><i class="fas fa-globe"></i></div>
-                <div class="involvement-info">
-                  <h3 data-en="ITR Council" data-fr="Conseil ITR">ITR Council</h3>
+                <div class="involvement-card">
+                <div class="involvement-card-header">
+                  <div class="involvement-icon"><i class="fas fa-calendar-alt"></i></div>
+                  <h3 data-en="CSE 2026 Organizing Committee" data-fr="Comité organisateur CDDI 2026">CSE 2026 Organizing Committee</h3>
                   <span class="date" data-en="2025 - 2026" data-fr="2025 - 2026">2025 - 2026</span>
-                  <span class="achievement" data-en="Representative of GÉGI" data-fr="Représentant du GÉGI">Representative of GÉGI</span>
-                  <p data-en="Represented the engineering department on the ITR board as GÉGI president." data-fr="Représenté le génie informatique au conseil d'administration d'ITR en tant que président du GÉGI.">Represented the engineering department on the ITR board as GÉGI president.</p>
                 </div>
-              </div>
+                <div class="involvement-info">
+                  <span class="achievement"
+                    data-en="Technologies Director"
+                    data-fr="Directeur aux technologies">Technologies Director</span>
+                  <p data-en="Member of the organizing committee for a large-scale national conference overseen by the Canadian Federation of Engineering Students (CFES), aimed at promoting sustainability in engineering."
+                   data-fr="Membre du comité organisateur d'une conférence d'envergure nationale, chapeautée par la Fédération canadienne des étudiants en génie (FCEG), visant à promouvoir le développement durable en ingénierie.">
+                  Member of the organizing committee for a large-scale national conference overseen by the Canadian Federation of Engineering Students (CFES), aimed at promoting sustainability in engineering.
+                  </p>
+                </div>
+                </div>
+
+                <div class="involvement-card">
+                <div class="involvement-card-header">
+                  <div class="involvement-icon"><i class="fas fa-globe"></i></div>
+                  <h3 data-en="ITR Board of Directors" data-fr="Conseil d'administration d'ITR">ITR Board of Directors</h3>
+                  <span class="date" data-en="2025 - 2026" data-fr="2025 - 2026">2025 - 2026</span>
+                </div>
+                <div class="involvement-info">
+                  <span class="achievement" data-en="GÉGI Representative" data-fr="Représentant GÉGI">GÉGI Representative</span>
+                  <p
+                  data-en="As president of the Electrical and Computer Engineering student association (GÉGI), I sat on the board of directors of the general engineering student association (ITR), where I represented GÉGI members and defended their academic, social, and financial interests within a broader decision-making body."
+                  data-fr="À titre de président de l’association étudiante de génie électrique et génie informatique (GÉGI), j’ai siégé au conseil d’administration de l’association étudiante générale en génie (ITR), où je représentais les membres GÉGI et défendais leurs intérêts académiques, sociaux et financiers au sein d’une instance décisionnelle élargie.">
+                  As president of the Electrical and Computer Engineering student association (GÉGI), I sat on the board of directors of the general engineering student association (ITR), where I represented GÉGI members and defended their academic, social, and financial interests within a broader decision-making body.
+                  </p>
+                </div>
+                </div>
+
             </div>
           </div>
 
