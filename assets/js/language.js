@@ -38,6 +38,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
     
+    // Update links with data-en-href and data-fr-href
+    document.querySelectorAll("[data-en-href]").forEach(el => {
+      const newHref = el.getAttribute(`data-${currentLang}-href`);
+      if (newHref) {
+        el.setAttribute("href", newHref);
+      }
+    });
+    
     // Update form placeholders
     document.querySelectorAll("[data-en-placeholder]").forEach(el => {
       const newPlaceholder = el.getAttribute(`data-${currentLang}-placeholder`);
