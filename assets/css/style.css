@@ -1610,7 +1610,7 @@ section:last-child {
 }
 
 /* Responsive: Mobile styles */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     body {
         padding-top: 110px;
     }
