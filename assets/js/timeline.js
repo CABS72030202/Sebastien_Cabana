@@ -7,10 +7,7 @@ class TimelineGenerator {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
         this.cards = [];
-        this.junctions = [];
-        this.branches = [];
         this.TRUNK_X = 20; // Position X du tronc principal
-        this.BRANCH_SPACING = 35; // Espacement entre les branches
         this.currentLang = localStorage.getItem("lang") || "fr";
         
         // Listen for language changes
@@ -45,113 +42,17 @@ class TimelineGenerator {
             endDate: card.endDate ? new Date(card.endDate) : new Date(), // "Présent" = maintenant
             type: card.type || 'subtle', // 'primary', 'subtle', 'marker'
             icon: card.icon,
-            branch: 0, // Sera calculé
-            branchLevel: 0, // Position sur l'axe horizontal
-            dotX: this.TRUNK_X, // Position X du point
-            junctionStart: null, // Point de jonction au début
-            junctionEnd: null // Point de jonction à la fin
+            dotX: this.TRUNK_X // Position X du point
         });
     }
 
     /**
-     * Calcule la structure de branches basée sur les superpositions temporelles
+     * Prépare les cartes pour l'affichage
      */
-    calculateBranches() {
-        // Trier par date de début (du plus ancien au plus récent)
-        this.cards.sort((a, b) => a.startDate - b.startDate);
-
-        // Étape 1: Créer les points de jonction pour chaque carte A/B
-        const junctionPoints = []; // {date, cardIds: [], combinedId}
-        
-        for (const card of this.cards) {
-            if (card.type === 'marker') {
-                card.branchLevel = 0;
-                card.dotX = this.TRUNK_X;
-                continue;
-            }
-            
-            // Ajouter point de début
-            const startTime = card.startDate.getTime();
-            let startPoint = junctionPoints.find(jp => jp.date.getTime() === startTime);
-            if (!startPoint) {
-                startPoint = {
-                    date: card.startDate,
-                    cardIds: [],
-                    combinedId: `junction-${startTime}`,
-                    type: 'combined'
-                };
-                junctionPoints.push(startPoint);
-            }
-            startPoint.cardIds.push({cardId: card.id, isStart: true});
-            
-            // Ajouter point de fin
-            const endTime = card.endDate.getTime();
-            let endPoint = junctionPoints.find(jp => jp.date.getTime() === endTime);
-            if (!endPoint) {
-                endPoint = {
-                    date: card.endDate,
-                    cardIds: [],
-                    combinedId: `junction-${endTime}`,
-                    type: 'combined'
-                };
-                junctionPoints.push(endPoint);
-            }
-            endPoint.cardIds.push({cardId: card.id, isStart: false});
-        }
-        
-        // Trier les points de jonction par date
-        junctionPoints.sort((a, b) => a.date - b.date);
-        
-        // Étape 2: Calculer les niveaux de branche basés sur l'imbrication
-        const workCards = this.cards.filter(c => c.type !== 'marker');
-        
-        for (const card of workCards) {
-            // Trouver si cette carte est imbriquée dans une autre
-            const containerCards = workCards.filter(other => 
-                other.id !== card.id &&
-                other.startDate <= card.startDate &&
-                other.endDate >= card.endDate
-            );
-            
-            if (containerCards.length === 0) {
-                // Pas de conteneur - niveau 1
-                card.branchLevel = 1;
-            } else {
-                // Imbriquée - prendre le niveau du conteneur le plus profond + 1
-                const maxContainerLevel = Math.max(...containerCards.map(c => c.branchLevel || 1));
-                card.branchLevel = maxContainerLevel + 1;
-            }
-            
-            card.dotX = this.TRUNK_X + (card.branchLevel * this.BRANCH_SPACING);
-        }
-        
-        // Étape 3: Créer les jonctions sur la branche mère appropriée
-        for (const jp of junctionPoints) {
-            // Pour chaque jonction, déterminer le niveau basé sur les cartes associées
-            const associatedCards = jp.cardIds.map(item => 
-                this.cards.find(c => c.id === item.cardId)
-            ).filter(c => c); // Filtrer les undefined
-            
-            if (associatedCards.length > 0) {
-                // Trouver le niveau le plus bas (le plus proche du trunk) parmi les cartes associées
-                const minBranchLevel = Math.min(...associatedCards.map(c => c.branchLevel));
-                // La jonction est sur la branche parente (niveau - 1)
-                const junctionLevel = Math.max(0, minBranchLevel - 1);
-                
-                this.junctions.push({
-                    id: jp.combinedId,
-                    cardIds: jp.cardIds,
-                    type: 'junction',
-                    dotX: this.TRUNK_X + (junctionLevel * this.BRANCH_SPACING),
-                    date: jp.date
-                });
-            }
-        }
-
-        // Inverser l'ordre pour affichage du plus récent au plus ancien
-        this.cards.reverse();
-        console.log('Branches calculées:', this.cards);
-        console.log('Jonctions:', this.junctions);
+    prepareCards() {
+        // Trier par date de début (du plus récent au plus ancien)
+        this.cards.sort((a, b) => b.startDate - a.startDate);
+        console.log('Cartes triées:', this.cards);
     }
 
     /**
@@ -163,55 +64,14 @@ class TimelineGenerator {
             return;
         }
 
-        // Calculer les branches avant de rendre
-        this.calculateBranches();
+        // Préparer les cartes avant de rendre
+        this.prepareCards();
 
         let html = '<div class="git-trunk"></div>';
 
-        // Créer un tableau combiné de cartes et jonctions, trié par date (plus récent en premier)
-        const allItems = [];
-        
-        // Ajouter les cartes
+        // Générer le HTML pour chaque carte
         this.cards.forEach(card => {
-            allItems.push({
-                type: 'card',
-                date: card.startDate,
-                item: card
-            });
-        });
-        
-        // Ajouter les jonctions
-        this.junctions.forEach(junction => {
-            allItems.push({
-                type: 'junction',
-                date: junction.date,
-                item: junction
-            });
-        });
-        
-        // Trier par date (plus récent en premier, puisque cards est déjà inversé)
-        allItems.sort((a, b) => b.date - a.date);
-        
-        // Filtrer les jonctions successives
-        const finalItems = [];
-        for (let i = 0; i < allItems.length; i++) {
-            const current = allItems[i];
-            const next = allItems[i + 1];
-
-            if (current.type === 'junction' && next && next.type === 'junction' && current.item.dotX === next.item.dotX) {
-                // Deux jonctions successives sur la même branche, on ignore la plus récente (current)
-                continue;
-            }
-            finalItems.push(current);
-        }
-        
-        // Générer le HTML
-        finalItems.forEach(element => {
-            if (element.type === 'card') {
-                html += this.renderCard(element.item);
-            } else {
-                html += this.renderJunction(element.item);
-            }
+            html += this.renderCard(card);
         });
 
         this.container.innerHTML = html;
@@ -270,24 +130,11 @@ class TimelineGenerator {
         }
 
         return `
-            <div class="git-entry" data-card-id="${card.id}" data-branch="${card.branchLevel}">
+            <div class="git-entry" data-card-id="${card.id}">
                 <div class="git-node" style="left: -80px;">
                     <div class="git-dot ${dotClass}" style="left: ${card.dotX - 20}px; transform: translate(-50%, -50%);"></div>
                 </div>
                 ${cardContent}
-            </div>
-        `;
-    }
-
-    /**
-     * Génère le HTML pour un point de jonction
-     */
-    renderJunction(junction) {
-        return `
-            <div class="git-entry git-junction" data-junction-id="${junction.id}" data-type="${junction.type}">
-                <div class="git-node" style="left: -80px;">
-                    <div class="git-junction-dot" style="left: ${junction.dotX - 20}px; transform: translateX(-50%);"></div>
-                </div>
             </div>
         `;
     }
@@ -366,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         startDate: '2019-07-01',
         endDate: '2023-06-01',
-        type: 'subtle'
+        type: 'primary'
     });
 
     // 2020 - Manoeuvre
@@ -401,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         startDate: '2020-03-01',
         endDate: '2023-05-01',
-        type: 'subtle'
+        type: 'primary'
     });
 
     // 2023 - Fin Cégep
@@ -452,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         startDate: '2023-08-01',
         endDate: '2026-12-31', // Présent
-        type: 'subtle'
+        type: 'primary'
     });
 
     // 2023 - Début Université
@@ -503,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         startDate: '2023-09-01',
         endDate: '2024-05-01',
-        type: 'subtle'
+        type: 'primary'
     });
 
     // 2025 - UQTR Research
