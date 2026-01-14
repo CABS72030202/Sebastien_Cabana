@@ -9,7 +9,7 @@ class TimelineGenerator {
         this.cards = [];
         this.junctions = [];
         this.branches = [];
-        this.TRUNK_X = 60; // Position X du tronc principal
+        this.TRUNK_X = 20; // Position X du tronc principal
         this.BRANCH_SPACING = 35; // Espacement entre les branches
     }
 
@@ -254,8 +254,8 @@ class TimelineGenerator {
 
         return `
             <div class="git-entry" data-card-id="${card.id}" data-branch="${card.branchLevel}">
-                <div class="git-node" style="left: -120px;">
-                    <div class="git-dot ${dotClass}" style="left: ${card.dotX - 60}px; transform: translate(-50%, -50%);"></div>
+                <div class="git-node" style="left: -80px;">
+                    <div class="git-dot ${dotClass}" style="left: ${card.dotX - 20}px; transform: translate(-50%, -50%);"></div>
                 </div>
                 ${cardContent}
             </div>
@@ -268,8 +268,8 @@ class TimelineGenerator {
     renderJunction(junction) {
         return `
             <div class="git-entry git-junction" data-junction-id="${junction.id}" data-type="${junction.type}">
-                <div class="git-node" style="left: -120px;">
-                    <div class="git-junction-dot" style="left: ${junction.dotX - 60}px; transform: translateX(-50%);"></div>
+                <div class="git-node" style="left: -80px;">
+                    <div class="git-junction-dot" style="left: ${junction.dotX - 20}px; transform: translateX(-50%);"></div>
                 </div>
             </div>
         `;
@@ -289,127 +289,140 @@ class TimelineGenerator {
 document.addEventListener('DOMContentLoaded', function() {
     const timeline = new TimelineGenerator('git-timeline-container');
     
-    // 2019
+    // 2019 - Début Cégep
+    timeline.addCard({
+        id: 'cegep-start',
+        title: 'Début études collégiales',
+        startDate: '2019-09-01',
+        type: 'marker',
+        icon: 'fas fa-laptop-code'
+    });
+
+    // 2019 - Tim Hortons
     timeline.addCard({
         id: 'tim-hortons',
         title: 'Assistant-gérant',
         subtitle: 'Tim Hortons',
         location: 'Saint-Jérôme, QC',
+        description: [
+            'Gestion d\'équipe et supervision des opérations quotidiennes',
+            'Formation et développement du personnel',
+            'Service à la clientèle de haute qualité'
+        ],
+        tags: [
+            { icon: 'fas fa-users', name: 'Gestion d\'équipe' },
+            { icon: 'fas fa-cogs', name: 'Opérations' },
+            { icon: 'fas fa-handshake', name: 'Service client' }
+        ],
         startDate: '2019-07-01',
         endDate: '2023-06-01',
         type: 'subtle'
     });
 
-    timeline.addCard({
-        id: 'cegep-start',
-        title: 'Début Cégep',
-        startDate: '2019-09-01',
-        type: 'marker',
-        icon: 'fas fa-school'
-    });
-
-    // 2020
+    // 2020 - Manoeuvre
     timeline.addCard({
         id: 'manoeuvre',
         title: 'Manœuvre',
         subtitle: 'Cégep de Saint-Jérôme',
         location: 'Saint-Jérôme, QC',
+        description: [
+            'Travaux d\'entretien et de maintenance',
+            'Support aux opérations du campus'
+        ],
+        tags: [
+            { icon: 'fas fa-tools', name: 'Fiabilité' },
+            { icon: 'fas fa-users', name: 'Travail d\'équipe' },
+            { icon: 'fas fa-sync-alt', name: 'Adaptabilité' }
+        ],
         startDate: '2020-03-01',
         endDate: '2023-05-01',
         type: 'subtle'
     });
 
-    // 2023
+    // 2023 - Fin Cégep
     timeline.addCard({
         id: 'cegep-end',
-        title: 'Fin Cégep',
+        title: 'Fin études collégiales',
         startDate: '2023-05-01',
         type: 'marker',
         icon: 'fas fa-graduation-cap'
     });
 
+    // 2023 - CIUSSS
     timeline.addCard({
         id: 'ciusss',
         title: 'Agent administratif',
-        subtitle: 'CIUSSS MCQ',
+        subtitle: 'CIUSSS MCQ – Département de radio-oncologie',
         location: 'Trois-Rivières, QC',
         description: [
-            'Gestion administrative et soutien aux opérations',
-            'Traitement de documents et communication'
+            'Automatisation de processus administratifs avec VBA et Excel',
+            'Gestion de documents et support aux opérations',
+            'Administration dans le secteur de la santé'
         ],
         tags: [
-            { icon: 'fas fa-file-alt', name: 'Administration' },
-            { icon: 'fas fa-users', name: 'Service client' }
+            { icon: 'fas fa-file-excel', name: 'VBA & Excel' },
+            { icon: 'fas fa-robot', name: 'Automatisation' },
+            { icon: 'fas fa-hospital', name: 'Santé' }
         ],
         startDate: '2023-08-01',
         endDate: '2026-12-31', // Présent
         type: 'subtle'
     });
 
-    timeline.addCard({
-        id: 'volleyball',
-        title: 'Entraîneur de volleyball',
-        subtitle: 'Club sportif UQTR',
-        location: 'Trois-Rivières, QC',
-        startDate: '2023-09-01',
-        endDate: '2024-05-01',
-        type: 'subtle'
-    });
-
+    // 2023 - Début Université
     timeline.addCard({
         id: 'uqtr-start',
-        title: 'Début Université (UQTR)',
+        title: 'Début études universitaires',
         startDate: '2023-09-01',
         type: 'marker',
         icon: 'fas fa-university'
     });
 
-    // 2024 - Volleyball se termine (géré automatiquement)
+    // 2023 - Volleyball
+    timeline.addCard({
+        id: 'volleyball',
+        title: 'Entraîneur de volleyball',
+        subtitle: 'Académie Les Estacades',
+        location: 'Trois-Rivières, QC',
+        description: [
+            'Encadrement et développement d\'athlètes',
+            'Planification d\'entraînements et stratégies de jeu',
+            'Leadership et mentorat'
+        ],
+        tags: [
+            { icon: 'fas fa-volleyball-ball', name: 'Volleyball' },
+            { icon: 'fas fa-user-tie', name: 'Leadership' },
+            { icon: 'fas fa-chalkboard-teacher', name: 'Mentorat' }
+        ],
+        startDate: '2023-09-01',
+        endDate: '2024-05-01',
+        type: 'subtle'
+    });
 
-    // 2025
+    // 2025 - UQTR Research
     timeline.addCard({
         id: 'uqtr-research',
         title: 'Assistant de recherche',
         subtitle: 'Université du Québec à Trois-Rivières',
         location: 'Trois-Rivières, QC',
         description: [
-            'Développement d\'algorithmes d\'apprentissage automatique',
-            'Analyse de données et visualisation',
-            'Rédaction d\'articles scientifiques'
+            'Rédaction de guides techniques et production de capsules vidéo pédagogiques',
+            'Conception de démonstrateurs matériels (amplificateur audio 3 bandes)',
+            'Contribution à la structuration de cours par projet',
+            'Gestion autonome des priorités et documentation technique',
+            'Utilisation de Git et Microsoft 365 pour la collaboration'
         ],
         tags: [
-            { icon: 'fab fa-python', name: 'Python' },
-            { icon: 'fas fa-brain', name: 'Machine Learning' },
-            { icon: 'fas fa-chart-line', name: 'Data Analysis' }
+            { icon: 'fas fa-microchip', name: 'PCB Design' },
+            { icon: 'fas fa-drafting-compass', name: 'Altium Designer' },
+            { icon: 'fas fa-cube', name: 'SolidWorks' },
+            { icon: 'fas fa-ruler-combined', name: 'Mesure' },
+            { icon: 'fas fa-video', name: 'Contenu multimédia' },
+            { icon: 'fab fa-git-alt', name: 'Git' }
         ],
-        startDate: '2025-04-01',
+        startDate: '2025-05-01',
         endDate: '2026-12-31', // Présent
         type: 'primary'
-    });
-
-    // 2024
-    timeline.addCard({
-        id: 'test-projet-1',
-        title: 'Projet Engineering Games',
-        startDate: '2024-11-01',
-        type: 'marker',
-        icon: 'fas fa-trophy'
-    });
-
-    timeline.addCard({
-        id: 'test-contract',
-        title: 'Contrat Test – Entreprise ABC',
-        startDate: '2024-06-01',
-        endDate: '2024-12-31',
-        type: 'primary'
-    });
-
-    timeline.addCard({
-        id: 'test-projet-2',
-        title: 'Prix Stars Award',
-        startDate: '2024-03-01',
-        type: 'marker',
-        icon: 'fas fa-star'
     });
 
     // Générer la timeline
