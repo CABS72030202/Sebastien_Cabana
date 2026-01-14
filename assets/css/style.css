@@ -716,9 +716,9 @@ section:last-child {
 }
 
 .education-card {
-  flex: 1 1 320px;
-  min-width: 280px;
-  max-width: 360px;
+  flex: 1 1 520px;
+  min-width: 480px;
+  max-width: 560px;
 }
 
 .education-card {
