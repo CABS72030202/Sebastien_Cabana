@@ -716,21 +716,21 @@ section:last-child {
 }
 
 .education-card {
-  flex: 1 1 520px;
-  min-width: 480px;
-  max-width: 560px;
+  flex: 1 1 100%;
+  width: 100%;
+  max-width: 100%;
 }
 
 .education-card {
     background: var(--white);
     border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    padding: 2rem 2.5rem 1.5rem 2.5rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
 }
 
 .education-card:hover {
-    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .education-header {
@@ -753,11 +753,18 @@ section:last-child {
     flex-shrink: 0;
 }
 
+.education-info {
+    flex: 1;
+    text-align: center;
+}
+
 .education-info h3 {
     font-family: var(--subtitle-font);
     color: var(--blue);
     margin-bottom: 0.5rem;
-    font-size: var(--subtitle2-size);
+    font-size: clamp(1.3rem, 2.7vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 .education-info h4 {
@@ -765,6 +772,8 @@ section:last-child {
     color: var(--gray);
     margin-bottom: 0.5rem;
     font-size: var(--body-size);
+    font-weight: 400;
+    line-height: 1.4;
 }
 
 .date {
@@ -779,47 +788,63 @@ section:last-child {
 .education-details h5 {
     font-family: var(--subtitle-font);
     color: var(--blue);
-    margin-bottom: 0.8rem;
-    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 1.8rem;
     font-size: var(--body-size);
+    font-weight: 600;
+    text-align: left;
 }
 
 .courses {
     display: flex;
     flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-bottom: 1rem;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-bottom: 1.2rem;
 }
 
 .course-tag {
-    background: var(--light-gray);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
+    background: transparent;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    border: 1.5px solid var(--teal);
     font-size: var(--body-size-small);
-    color: var(--blue);
+    color: var(--teal);
     font-family: var(--body-font);
-    font-weight: 600;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.course-tag:hover {
+    background: var(--teal);
+    color: var(--white);
 }
 
 .achievements {
     list-style: none;
     padding: 0;
+    text-align: left;
 }
 
 .achievements li {
-    padding: 0.3rem 0;
-    padding-left: 1.5rem;
+    padding: 0.5rem 0;
+    padding-left: 1.8rem;
     position: relative;
     font-family: var(--body-font);
     color: var(--body-color);
     font-size: var(--body-size-small);
+    line-height: 1.6;
 }
 
 .achievements li::before {
-    content: "🏆";
+    content: "";
     position: absolute;
     left: 0;
+    top: 0.9rem;
+    width: 6px;
+    height: 6px;
+    background: var(--teal);
+    border-radius: 50%;
 }
 
 /* Involvement Tabs Styles */
