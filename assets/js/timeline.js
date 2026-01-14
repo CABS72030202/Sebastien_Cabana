@@ -11,6 +11,22 @@ class TimelineGenerator {
         this.branches = [];
         this.TRUNK_X = 20; // Position X du tronc principal
         this.BRANCH_SPACING = 35; // Espacement entre les branches
+        this.currentLang = localStorage.getItem("lang") || "fr";
+        
+        // Listen for language changes
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'lang') {
+                this.currentLang = e.newValue;
+                this.render();
+            }
+        });
+    }
+    
+    /**
+     * Get text in current language
+     */
+    getText(textObj) {
+        return textObj[this.currentLang] || textObj.fr || textObj;
     }
 
     /**
@@ -217,12 +233,13 @@ class TimelineGenerator {
             cardContent = `
                 <div class="git-card ${cardClass}" style="margin-left: ${marginLeft}px;">
                     <span class="git-marker-icon"><i class="${card.icon}"></i></span>
-                    <span>${card.title}</span>
+                    <span>${this.getText(card.title)}</span>
                     <span class="git-date">${this.formatDate(card.startDate)}</span>
                 </div>
             `;
         } else {
-            const endDateStr = card.endDate > new Date(2025, 11, 1) ? 'Présent' : this.formatDate(card.endDate);
+            const presentText = this.currentLang === 'en' ? 'Present' : 'Présent';
+            const endDateStr = card.endDate > new Date(2025, 11, 1) ? presentText : this.formatDate(card.endDate);
             cardContent = `
                 <div class="git-card ${cardClass}" style="margin-left: ${marginLeft}px;">
                     <div class="git-card-top">
@@ -232,20 +249,20 @@ class TimelineGenerator {
                         </div>
                         <div class="git-card-location">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>${card.location || ''}</span>
+                            <span>${this.getText(card.location) || ''}</span>
                         </div>
                     </div>
                     <div class="git-card-divider"></div>
                     <div class="git-card-content">
-                        <h3 class="git-card-title">${card.title}</h3>
-                        ${card.subtitle ? `<h4 class="git-card-subtitle">${card.subtitle}</h4>` : ''}
+                        <h3 class="git-card-title">${this.getText(card.title)}</h3>
+                        ${card.subtitle ? `<h4 class="git-card-subtitle">${this.getText(card.subtitle)}</h4>` : ''}
                         ${card.description && card.description.length > 0 ? `
                         <ul class="git-card-description">
-                            ${card.description.map(item => `<li>${item}</li>`).join('')}
+                            ${card.description.map(item => `<li>${this.getText(item)}</li>`).join('')}
                         </ul>` : ''}
                         ${card.tags && card.tags.length > 0 ? `
                         <div class="git-card-tags">
-                            ${card.tags.map(tag => `<span class="git-tag"><i class="${tag.icon}"></i> ${tag.name}</span>`).join('')}
+                            ${card.tags.map(tag => `<span class="git-tag"><i class="${tag.icon}"></i> ${this.getText(tag.name)}</span>`).join('')}
                         </div>` : ''}
                     </div>
                 </div>
@@ -279,8 +296,11 @@ class TimelineGenerator {
      * Formate une date pour l'affichage
      */
     formatDate(date) {
-        const months = ['Jan', 'Fév', 'Mars', 'Avr', 'Mai', 'Juin', 
-                       'Juil', 'Août', 'Sept', 'Oct', 'Nov', 'Déc'];
+        const monthsFr = ['Jan', 'Fév', 'Mars', 'Avr', 'Mai', 'Juin', 
+                         'Juil', 'Août', 'Sept', 'Oct', 'Nov', 'Déc'];
+        const monthsEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const months = this.currentLang === 'en' ? monthsEn : monthsFr;
         return `${months[date.getMonth()]} ${date.getFullYear()}`;
     }
 }
@@ -289,10 +309,25 @@ class TimelineGenerator {
 document.addEventListener('DOMContentLoaded', function() {
     const timeline = new TimelineGenerator('git-timeline-container');
     
+    // Update timeline when language changes
+    const langToggle = document.getElementById('lang-toggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', function() {
+            // Small delay to let localStorage update
+            setTimeout(() => {
+                timeline.currentLang = localStorage.getItem("lang") || "fr";
+                timeline.render();
+            }, 50);
+        });
+    }
+    
     // 2019 - Début Cégep
     timeline.addCard({
         id: 'cegep-start',
-        title: 'Début études collégiales',
+        title: {
+            fr: 'Début études collégiales',
+            en: 'College studies start'
+        },
         startDate: '2019-09-01',
         type: 'marker',
         icon: 'fas fa-laptop-code'
@@ -301,18 +336,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2019 - Tim Hortons
     timeline.addCard({
         id: 'tim-hortons',
-        title: 'Assistant-gérant',
+        title: {
+            fr: 'Assistant-gérant',
+            en: 'Assistant Manager'
+        },
         subtitle: 'Tim Hortons',
-        location: 'Saint-Jérôme, QC',
+        location: {
+            fr: 'Saint-Jérôme, QC',
+            en: 'Saint-Jérôme, QC'
+        },
         description: [
-            'Gestion d\'équipe et supervision des opérations quotidiennes',
-            'Formation et développement du personnel',
-            'Service à la clientèle de haute qualité'
+            {
+                fr: 'Gestion d\'équipe et supervision des opérations quotidiennes',
+                en: 'Team management and daily operations supervision'
+            },
+            {
+                fr: 'Formation et développement du personnel',
+                en: 'Staff training and development'
+            },
+            {
+                fr: 'Service à la clientèle de haute qualité',
+                en: 'High-quality customer service'
+            }
         ],
         tags: [
-            { icon: 'fas fa-users', name: 'Gestion d\'équipe' },
-            { icon: 'fas fa-cogs', name: 'Opérations' },
-            { icon: 'fas fa-handshake', name: 'Service client' }
+            { icon: 'fas fa-users', name: { fr: 'Gestion d\'équipe', en: 'Team Management' } },
+            { icon: 'fas fa-cogs', name: { fr: 'Opérations', en: 'Operations' } },
+            { icon: 'fas fa-handshake', name: { fr: 'Service client', en: 'Customer Service' } }
         ],
         startDate: '2019-07-01',
         endDate: '2023-06-01',
@@ -322,17 +372,32 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2020 - Manoeuvre
     timeline.addCard({
         id: 'manoeuvre',
-        title: 'Manœuvre',
-        subtitle: 'Cégep de Saint-Jérôme',
-        location: 'Saint-Jérôme, QC',
+        title: {
+            fr: 'Manœuvre',
+            en: 'Laborer'
+        },
+        subtitle: {
+            fr: 'Cégep de Saint-Jérôme',
+            en: 'Cégep de Saint-Jérôme'
+        },
+        location: {
+            fr: 'Saint-Jérôme, QC',
+            en: 'Saint-Jérôme, QC'
+        },
         description: [
-            'Travaux d\'entretien et de maintenance',
-            'Support aux opérations du campus'
+            {
+                fr: 'Travaux d\'entretien et de maintenance',
+                en: 'Maintenance and upkeep work'
+            },
+            {
+                fr: 'Support aux opérations du campus',
+                en: 'Campus operations support'
+            }
         ],
         tags: [
-            { icon: 'fas fa-tools', name: 'Fiabilité' },
-            { icon: 'fas fa-users', name: 'Travail d\'équipe' },
-            { icon: 'fas fa-sync-alt', name: 'Adaptabilité' }
+            { icon: 'fas fa-tools', name: { fr: 'Fiabilité', en: 'Reliability' } },
+            { icon: 'fas fa-users', name: { fr: 'Travail d\'équipe', en: 'Teamwork' } },
+            { icon: 'fas fa-sync-alt', name: { fr: 'Adaptabilité', en: 'Adaptability' } }
         ],
         startDate: '2020-03-01',
         endDate: '2023-05-01',
@@ -342,7 +407,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2023 - Fin Cégep
     timeline.addCard({
         id: 'cegep-end',
-        title: 'Fin études collégiales',
+        title: {
+            fr: 'Fin études collégiales',
+            en: 'College studies end'
+        },
         startDate: '2023-05-01',
         type: 'marker',
         icon: 'fas fa-graduation-cap'
@@ -351,18 +419,36 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2023 - CIUSSS
     timeline.addCard({
         id: 'ciusss',
-        title: 'Agent administratif',
-        subtitle: 'CIUSSS MCQ – Département de radio-oncologie',
-        location: 'Trois-Rivières, QC',
+        title: {
+            fr: 'Agent administratif',
+            en: 'Administrative Officer'
+        },
+        subtitle: {
+            fr: 'CIUSSS MCQ – Département de radio-oncologie',
+            en: 'CIUSSS MCQ – Radiation Oncology Department'
+        },
+        location: {
+            fr: 'Trois-Rivières, QC',
+            en: 'Trois-Rivières, QC'
+        },
         description: [
-            'Automatisation de processus administratifs avec VBA et Excel',
-            'Gestion de documents et support aux opérations',
-            'Administration dans le secteur de la santé'
+            {
+                fr: 'Automatisation de processus administratifs avec VBA et Excel',
+                en: 'Administrative process automation with VBA and Excel'
+            },
+            {
+                fr: 'Gestion de documents et support aux opérations',
+                en: 'Document management and operations support'
+            },
+            {
+                fr: 'Administration dans le secteur de la santé',
+                en: 'Healthcare sector administration'
+            }
         ],
         tags: [
-            { icon: 'fas fa-file-excel', name: 'VBA & Excel' },
-            { icon: 'fas fa-robot', name: 'Automatisation' },
-            { icon: 'fas fa-hospital', name: 'Santé' }
+            { icon: 'fas fa-file-excel', name: { fr: 'VBA & Excel', en: 'VBA & Excel' } },
+            { icon: 'fas fa-robot', name: { fr: 'Automatisation', en: 'Automation' } },
+            { icon: 'fas fa-hospital', name: { fr: 'Santé', en: 'Healthcare' } }
         ],
         startDate: '2023-08-01',
         endDate: '2026-12-31', // Présent
@@ -372,7 +458,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2023 - Début Université
     timeline.addCard({
         id: 'uqtr-start',
-        title: 'Début études universitaires',
+        title: {
+            fr: 'Début études universitaires',
+            en: 'University studies start'
+        },
         startDate: '2023-09-01',
         type: 'marker',
         icon: 'fas fa-university'
@@ -381,18 +470,36 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2023 - Volleyball
     timeline.addCard({
         id: 'volleyball',
-        title: 'Entraîneur de volleyball',
-        subtitle: 'Académie Les Estacades',
-        location: 'Trois-Rivières, QC',
+        title: {
+            fr: 'Entraîneur de volleyball',
+            en: 'Volleyball Coach'
+        },
+        subtitle: {
+            fr: 'Académie Les Estacades',
+            en: 'Les Estacades Academy'
+        },
+        location: {
+            fr: 'Trois-Rivières, QC',
+            en: 'Trois-Rivières, QC'
+        },
         description: [
-            'Encadrement et développement d\'athlètes',
-            'Planification d\'entraînements et stratégies de jeu',
-            'Leadership et mentorat'
+            {
+                fr: 'Encadrement et développement d\'athlètes',
+                en: 'Athlete coaching and development'
+            },
+            {
+                fr: 'Planification d\'entraînements et stratégies de jeu',
+                en: 'Training planning and game strategies'
+            },
+            {
+                fr: 'Leadership et mentorat',
+                en: 'Leadership and mentoring'
+            }
         ],
         tags: [
-            { icon: 'fas fa-volleyball-ball', name: 'Volleyball' },
-            { icon: 'fas fa-user-tie', name: 'Leadership' },
-            { icon: 'fas fa-chalkboard-teacher', name: 'Mentorat' }
+            { icon: 'fas fa-volleyball-ball', name: { fr: 'Volleyball', en: 'Volleyball' } },
+            { icon: 'fas fa-user-tie', name: { fr: 'Leadership', en: 'Leadership' } },
+            { icon: 'fas fa-chalkboard-teacher', name: { fr: 'Mentorat', en: 'Mentoring' } }
         ],
         startDate: '2023-09-01',
         endDate: '2024-05-01',
@@ -402,22 +509,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2025 - UQTR Research
     timeline.addCard({
         id: 'uqtr-research',
-        title: 'Assistant de recherche',
-        subtitle: 'Université du Québec à Trois-Rivières',
-        location: 'Trois-Rivières, QC',
+        title: {
+            fr: 'Assistant de recherche',
+            en: 'Research Assistant'
+        },
+        subtitle: {
+            fr: 'Université du Québec à Trois-Rivières',
+            en: 'Université du Québec à Trois-Rivières'
+        },
+        location: {
+            fr: 'Trois-Rivières, QC',
+            en: 'Trois-Rivières, QC'
+        },
         description: [
-            'Rédaction de guides techniques et production de capsules vidéo pédagogiques',
-            'Conception de démonstrateurs matériels (amplificateur audio 3 bandes)',
-            'Contribution à la structuration de cours par projet',
-            'Gestion autonome des priorités et documentation technique',
-            'Utilisation de Git et Microsoft 365 pour la collaboration'
+            {
+                fr: 'Rédaction de guides techniques et production de capsules vidéo pédagogiques',
+                en: 'Technical guide writing and educational video production'
+            },
+            {
+                fr: 'Conception de démonstrateurs matériels (amplificateur audio 3 bandes)',
+                en: 'Hardware demonstrator design (3-band audio amplifier)'
+            },
+            {
+                fr: 'Contribution à la structuration de cours par projet',
+                en: 'Contribution to project-based course structuring'
+            },
+            {
+                fr: 'Gestion autonome des priorités et documentation technique',
+                en: 'Autonomous priority management and technical documentation'
+            },
+            {
+                fr: 'Utilisation de Git et Microsoft 365 pour la collaboration',
+                en: 'Git and Microsoft 365 for collaboration'
+            }
         ],
         tags: [
-            { icon: 'fas fa-microchip', name: 'PCB Design' },
-            { icon: 'fas fa-drafting-compass', name: 'Altium Designer' },
+            { icon: 'fas fa-microchip', name: { fr: 'PCB Design', en: 'PCB Design' } },
+            { icon: 'fas fa-drafting-compass', name: { fr: 'Altium Designer', en: 'Altium Designer' } },
             { icon: 'fas fa-cube', name: 'SolidWorks' },
-            { icon: 'fas fa-ruler-combined', name: 'Mesure' },
-            { icon: 'fas fa-video', name: 'Contenu multimédia' },
+            { icon: 'fas fa-ruler-combined', name: { fr: 'Mesure', en: 'Measurement' } },
+            { icon: 'fas fa-video', name: { fr: 'Contenu multimédia', en: 'Multimedia Content' } },
             { icon: 'fab fa-git-alt', name: 'Git' }
         ],
         startDate: '2025-05-01',
