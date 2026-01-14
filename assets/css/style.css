@@ -345,8 +345,8 @@ section:last-child {
 }
 
 .profile-photo {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid var(--blue);
@@ -847,9 +847,9 @@ section:last-child {
 }
 
 .involvement-card {
-  flex: 1 1 300px;
-  min-width: 260px;
-  max-width: 340px;
+  flex: 1 1 350px;
+  min-width: 310px;
+  max-width: 390px;
 }
 
 .involvement-card {
@@ -942,9 +942,9 @@ section:last-child {
 }
 
 .interest-card {
-  flex: 1 1 320px;
-  min-width: 280px;
-  max-width: 360px;
+  flex: 1 1 420px;
+  min-width: 380px;
+  max-width: 460px;
 }
 
 .interest-card {
